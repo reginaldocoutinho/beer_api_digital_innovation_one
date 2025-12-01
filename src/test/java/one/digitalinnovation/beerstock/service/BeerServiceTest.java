@@ -36,7 +36,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
+//teste pipeline
 @ExtendWith(MockitoExtension.class)
 public class BeerServiceTest {
 
@@ -50,6 +50,8 @@ public class BeerServiceTest {
     @InjectMocks
     private BeerService beerService;
 
+
+    //Quando a cerveja é informada ela deve ser criada
     @Test
     void whenBeerInformedThenItShouldBeCreated() throws BeerAlreadyRegisteredException {
         // given
@@ -68,6 +70,7 @@ public class BeerServiceTest {
         assertThat(createdBeerDTO.getQuantity(), is(equalTo(expectedBeerDTO.getQuantity())));
     }
 
+    //Quando uma cerveja já registrada for informada, uma exceção deverá ser lançada.
     @Test
     void whenAlreadyRegisteredBeerInformedThenAnExceptionShouldBeThrown() {
         // given
@@ -81,6 +84,7 @@ public class BeerServiceTest {
         assertThrows(BeerAlreadyRegisteredException.class, () -> beerService.createBeer(expectedBeerDTO));
     }
 
+    //Quando um nome de cerveja válido for fornecido, retorne uma cerveja.
     @Test
     void whenValidBeerNameIsGivenThenReturnABeer() throws BeerNotFoundException {
         // given
@@ -96,6 +100,7 @@ public class BeerServiceTest {
         assertThat(foundBeerDTO, is(equalTo(expectedFoundBeerDTO)));
     }
 
+    //Quando um nome de cerveja não registrado for fornecido, lance uma exceção.
     @Test
     void whenNotRegisteredBeerNameIsGivenThenThrowAnException() {
         // given
@@ -108,6 +113,7 @@ public class BeerServiceTest {
         assertThrows(BeerNotFoundException.class, () -> beerService.findByName(expectedFoundBeerDTO.getName()));
     }
 
+    //Quando a lista `Beer` for chamada, retorne uma lista de cervejas.
     @Test
     void whenListBeerIsCalledThenReturnAListOfBeers() {
         // given
