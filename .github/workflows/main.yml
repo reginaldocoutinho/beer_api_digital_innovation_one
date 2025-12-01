@@ -1,25 +1,39 @@
 name: CI do Projeto Beer API Java
 
 on:
-  push: 
-    branches: [ main ]
+  push:
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
-    
+    branches: [ main, master ]
+
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4 
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-    - name: Configurar Java JDK 17
-      uses: actions/setup-java@v4 
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
+      - name: Mostrar arquivos do workspace (debug)
+        run: |
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
+          ls -la
+          # se você usa subpasta, descomente e ajuste:
+          # ls -la ./beer-api
 
-    - name: Compilar e Rodar Testes com Maven
-      run: mvn clean install
+      - name: Configurar Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Verificar Java e Maven (debug)
+        run: |
+          java -version
+          mvn -v
+
+      - name: Compilar e Rodar Testes com Maven
+        # Se seu pom.xml NÃO estiver na raiz, defina working-directory: ./caminho/para/pasta
+        run: mvn -B clean install
+        # Para diagnóstico mais verboso use: mvn -B -X -e clean install
