@@ -1,28 +1,25 @@
 name: CI do Projeto Beer API Java
 
-#Define os eventos que disparam a pipeline
 on:
   push: 
     branches: [ main ]
   pull_request:
     branches: [ main ]
-# Define os trabalhos (jobs) a serem executados
+    
 jobs:
   build-and-test:
-    # O ambiente onde o job será executado
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
-    # Passos do trabalho
     steps:
     - name: Checkout do código
-      uses: actions/checkout@v4 #Action padrão para baixar
+      uses: actions/checkout@v4 
 
     - name: Configurar Java JDK 17
-      uses: actions/setup-node@v4
+      uses: actions/setup-java@v4 
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: 'maven'
 
     - name: Compilar e Rodar Testes com Maven
-      run: mvn clean install    
+      run: mvn clean install
