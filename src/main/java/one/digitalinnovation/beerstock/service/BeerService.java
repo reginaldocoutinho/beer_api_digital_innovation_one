@@ -1,5 +1,5 @@
 package one.digitalinnovation.beerstock.service;
-
+//teste pipeline
 import lombok.AllArgsConstructor;
 import one.digitalinnovation.beerstock.dto.BeerDTO;
 import one.digitalinnovation.beerstock.entity.Beer;
