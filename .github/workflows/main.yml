@@ -21,10 +21,11 @@ jobs:
           # se você usa subpasta, descomente e ajuste:
           # ls -la ./beer-api
 
-      - name: Configurar Java JDK 17
+      - name: Configurar Java JDK 14
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          # Alterado de '17' para '14'
+          java-version: '14'
           distribution: 'temurin'
           cache: 'maven'
 
