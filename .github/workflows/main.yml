@@ -21,13 +21,13 @@ jobs:
           # se você usa subpasta, descomente e ajuste:
           # ls -la ./beer-api
 
-      - name: Configurar Java JDK 14
+      - name: Configurar Java JDK 14 com Zulu
         uses: actions/setup-java@v4
         with:
-          # Alterado de '17' para '14'
           java-version: '14'
-          distribution: 'temurin'
+          distribution: 'zulu' # Alterado para zulu
           cache: 'maven'
+
 
       - name: Verificar Java e Maven (debug)
         run: |
